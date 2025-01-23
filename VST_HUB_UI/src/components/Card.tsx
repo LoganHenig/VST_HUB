@@ -1,8 +1,10 @@
 import {Card, CardHeader, CardBody } from "@heroui/card";
 import { Image } from "@heroui/image"
+import "./vst-card.css"
 
 export default function VstCard() {
   return (
+    <div className="card-width">
     <Card className="py-4">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
         <p className="text-tiny uppercase font-bold">Cloud Audio</p>
@@ -18,5 +20,6 @@ export default function VstCard() {
         />
       </CardBody>
     </Card>
+    </div>
   );
 }

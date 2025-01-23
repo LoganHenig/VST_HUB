@@ -4,11 +4,10 @@ import { Code } from "@heroui/code";
 import { button as buttonStyles } from "@heroui/theme";
 
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
+import { title, subtitle } from "@/primitives";
 import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import VstCard from "@/components/Card";
-import Carousel from "@/components/Carousel";
 
 export default function IndexPage() {
   return (
@@ -26,7 +25,6 @@ export default function IndexPage() {
           </div>
         </div>
         <VstCard/>
-        <Carousel/>
 
         <div className="flex gap-3">
           <Link

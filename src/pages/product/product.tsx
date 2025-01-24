@@ -5,11 +5,8 @@ export const Product = () =>{
     const { id } = useParams();
 
 
-    return (
-        <>
+    return (<>
         <h1>Hello, World! Product page {id}</h1>
         <button onClick={ ()=>{navigate('/')} } />
-        </>
-    
-    )
+    </>)
 }

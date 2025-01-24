@@ -1,12 +1,11 @@
-import React from "react"
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from 'primereact/button';
 
 export const Landing = () =>{
     const navigate = useNavigate();
-    return (
-    <>
+    return (<>
         <h1>Hello, World! landing page</h1>
-        <button onClick={ ()=>{navigate('/search')} } />
-    </>
-    )
+        <Button label="Search Products" onClick={ ()=>{navigate('/search')} } />
+    </>)
 }

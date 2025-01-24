@@ -7,12 +7,12 @@ import { Product } from './pages/product/product'
 import "primereact/resources/themes/lara-light-teal/theme.css"
 
 export const App = () => {
-  const value = {
+  const config = {
     ripple: true
   }
 
   return (
-    <PrimeReactProvider value={value}>
+    <PrimeReactProvider value={config}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Landing />} />

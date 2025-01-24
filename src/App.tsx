@@ -11,8 +11,7 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/product:id' element={<Product />} />
-
+        <Route path='/product/:id' element={<Product />} />
         <Route path='*' element= { <div>tests</div>} />
       </Routes>
     </BrowserRouter>

@@ -13,16 +13,20 @@ export const App = () => {
   }
 
   return (
-    <PrimeReactProvider value={config}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/product:id' element={<Product />} />
-          <Route path='*' element= {<NotFound />}/>
-        </Routes>
-      </BrowserRouter>
-    </PrimeReactProvider>
+    <main className="relative min-h-screen w-screen overflow-x-hidden">
+      
+      <PrimeReactProvider value={config}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Landing />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/product:id' element={<Product />} />
+            <Route path='*' element= {<NotFound />}/>
+          </Routes>
+        </BrowserRouter>
+      </PrimeReactProvider>
+    
+    </main>
   )
 }
 

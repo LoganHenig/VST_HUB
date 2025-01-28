@@ -1,38 +1,36 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from 'primereact/button';
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
+import './landing.css'
+import { Hero } from '../../components/landingPageComps/hero';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Landing = () =>{
-    const navigate = useNavigate();
-    return (<>
-        <h1>Hello, World! landing page</h1>
-        <Button label="Search Products" onClick={ ()=>{navigate('/search')} } />
-        <h1 className="text-3xl font-bold underline text-vst-blue-200 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-300 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-400 bg-vst-blue-800">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-500 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-600 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-700 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-800 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-900 ">
-            Hello world!
-        </h1>
-        <h1 className="text-3xl font-bold underline text-vst-blue-1000 ">
-            Hello world!
-        </h1>
-    </>)
+    useGSAP(()=> {
+        const clipAnimation = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#clip',
+                start: 'center center',
+                end: '+=800 center',
+                scrub: 0.5,
+                pin: true, 
+                pinSpacing: true,
+            }
+        })
+        clipAnimation.to('.mask-clip-path', {
+            width: '100vw',
+            height: '100vh',
+            borderRadius: 0
+
+        })
+    })
+
+    // const navigate = useNavigate();
+
+    return (
+    <>  
+        <Hero/>
+    </>
+    )
 }

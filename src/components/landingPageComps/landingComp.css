@@ -1,0 +1,44 @@
+.video-width{
+    width: 88%;
+    /* min-height: 45rem; */
+    top: -2rem;
+}
+.VST-HUB-heading{
+    position: absolute;
+    top: 10dvw;
+    left: 3dvw;
+
+}
+.invert-color{
+    filter: invert(1);
+}
+
+.video-99{
+    width: 99%;
+    height: 99%;
+
+}
+.width-100{
+    width: 100%;
+}
+.bg-white{
+    background-color: white;
+}
+.layer2{
+    background-image: url('../../assets/layered-waves-gradient.svg');
+    min-width: 80rem;
+    position: absolute;
+    background-color: white;
+    bottom: 0;
+    min-height: 5rem;
+    z-index: -100;
+  }
+  .spacer {
+    aspect-ratio: 960/540;
+    color: white;
+    width: 100%;
+    min-width: 80rem;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+  }

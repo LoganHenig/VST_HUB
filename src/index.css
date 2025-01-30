@@ -23,6 +23,12 @@
     src: local('general'), url('/public/Quicksand/Quicksand-VariableFont_wght.ttf') format('truetype');
   }
 }
+.bangers-font{
+  font-family: 'bangers';
+}
+.general-font{
+  font-family: 'general';
+}
 
 @layer utilities {
 
@@ -76,9 +82,3 @@ html::-webkit-scrollbar {
 
 
 
-.bangers-font{
-  font-family: 'bangers';
-}
-.general-font{
-  font-family: 'general';
-}

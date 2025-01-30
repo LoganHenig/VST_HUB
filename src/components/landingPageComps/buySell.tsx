@@ -14,7 +14,7 @@ export const BuySell = () => {
             <div className='sell-icon flex items-center justify-center'>
                 <div className='comp-image'/>
             </div>
-            <div className='sell-text text-white text-center flex items-center'>We dont personaly sell products but we can help you find the product you need and link</div>
+            <div className='sell-text text-white text-center flex items-center'>We dont personaly sell products but if you would like your product to be listed contact us at vstsupport@vsthub.com</div>
             
         </div>
     </div>

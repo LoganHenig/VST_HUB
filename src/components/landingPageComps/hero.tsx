@@ -7,7 +7,7 @@ export const Hero = () => {
             <div className="relative w-screen overflow-x-hidden flex justify-center">
                 
                 <div id="video-frame" className=" relative z-10 video-width overflow-hidden rounded-lg white flex justify-center">
-                    <div className='VST-HUB-heading text-6xl z-40 bangers-font flex flex-col invert-color'>
+                    <div className='VST-HUB-heading text-7xl z-40 bangers-font flex flex-col invert-color'>
                         <p><b>VST HUB</b></p>
                         <div className=''>FIND YOUR SOUND</div>
                         {/* <div className='mt-20 ml-11'>
@@ -15,7 +15,7 @@ export const Hero = () => {
                         </div> */}
                         
                     </div>
-                    <div className=' width-100 overflow-x-hidden video-clip-path min-w-3xl lg:m-10 md:-m-8 m-4 bg-white flex justify-center items-center'>
+                    <div className=' width-100 overflow-x-hidden video-clip-path min-w-3xl lg:m-10 md:m-8 m-0 bg-white flex justify-center items-center'>
                         <video 
                             muted
                             loop

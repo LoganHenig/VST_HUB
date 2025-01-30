@@ -3,6 +3,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import './landing.css'
 import { Hero } from '../../components/landingPageComps/hero';
+import { TopThree } from '../../components/landingPageComps/topThree';
+import { Compare } from '../../components/landingPageComps/compare';
+import { BuySell } from '../../components/landingPageComps/buySell';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,6 +34,12 @@ export const Landing = () =>{
     return (
     <>  
         <Hero/>
+        <TopThree/>
+        <Compare/>
+        <BuySell/>
+        <div className='layer2 spacer'>
+
+        </div>
     </>
     )
 }

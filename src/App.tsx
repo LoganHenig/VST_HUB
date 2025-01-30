@@ -6,6 +6,7 @@ import { Search } from './pages/search/search'
 import { Product } from './pages/product/product'
 import "primereact/resources/themes/lara-light-teal/theme.css"
 import { NotFound } from './pages/notFound/notFound';
+import './index.css'
 
 export const App = () => {
   const config = {
@@ -13,7 +14,7 @@ export const App = () => {
   }
 
   return (
-    <main className="relative min-h-screen w-screen overflow-x-hidden">
+    <main className="relative min-h-screen w-screen overflow-x-hidden remove-scroll-bar">
       
       <PrimeReactProvider value={config}>
         <BrowserRouter>

@@ -37,14 +37,35 @@ body{
   background-color: black;
   overflow-x: hidden;
 }
+html{
+  /* removes scroll bar IE Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* removes scroll bar chrome safari and opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
 
 @media (min-width: 768px) { /* Tailwind's md breakpoint */
+  .video-width{
+    width: 100%;
+    /* min-height: 45rem; */
+    top: -2rem;
+
+}
   .video-clip-path{
-    clip-path: polygon(100% 17%, 100% 81%, 0 81%, 0 58%, 42% 18%);
+    
   }
 }
 
 @media (min-width: 1024px) { /* Tailwind's lg breakpoint */
+  .video-width{
+    width: 88%;
+    /* min-height: 45rem; */
+    top: -2rem;
+}
   .video-clip-path{
     /* clip-path: polygon(100% 0%, 83% 63%, 100% 100%, 18% 99%, 0 58%, 25% 0%); */
     /* clip-path: polygon(100% 18%, 83% 63%, 94% 81%, 15% 82%, 0 58%, 26% 17%); */

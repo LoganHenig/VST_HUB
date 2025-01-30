@@ -1,0 +1,96 @@
+
+.VST-HUB-heading{
+    position: absolute;
+    top: 12dvw;
+    left: 3dvw;
+    filter: invert(1);
+    mix-blend-mode: difference;
+}
+@media (min-width: 768px) {
+    .bg-white{
+        background-color: transparent;
+    }
+}
+@media (min-width: 1024px) {
+    .bg-white{
+        background-color: white;
+    }
+}
+
+.video-99{
+    width: 99%;
+    height: 99%;
+
+}
+.width-100{
+    width: 100%;
+}
+
+.layer2{
+    background-image: url('../../assets/layered-waves-gradient.svg');
+    min-width: 80rem;
+    position: absolute;
+    background-color: white;
+    bottom: 0;
+    min-height: 5rem;
+    z-index: -1;
+  }
+  .spacer {
+    aspect-ratio: 960/540;
+
+    width: 100%;
+    min-width: 80rem;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+  }
+.top-neg-20{
+    position: relative;
+    top:-10rem;
+}
+
+/* Compare Comp */
+
+.left-right-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.left, .right {
+    display: flex;
+    justify-content: center;
+    max-width: 40rem;
+    min-height: 20rem;
+    width: 100%;
+
+}
+.left {
+    border-right: 2px solid white;
+}
+.comp-image{
+    background-size: contain;
+    background-image: url('../../assets/cat.svg');
+    width: 10rem;
+    height: 10rem;
+    z-index: 20;
+    filter: invert(1);
+    mix-blend-mode: difference;
+    background-repeat: no-repeat;
+}
+
+/* BUY SELL CSS */
+.buy-sell-container{
+    max-width: 60rem;
+    width: 100%;
+}
+
+.buy-text, .sell-text{
+    min-height: 15rem;
+    width: 45%;
+}
+.buy-icon, .sell-icon{
+    min-height: 15rem;
+    width: 55%;
+}

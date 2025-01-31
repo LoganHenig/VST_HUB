@@ -25,9 +25,11 @@
   background-position: top;
   background-size: cover;
 }
+
 .layer {
   background-image: url("../../assets/blue-bg-gradient.svg");
 }
+
 .layer2 {
   background-image: url("../../assets/layered-waves-gradient.svg");
   min-width: 80rem;

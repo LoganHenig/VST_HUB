@@ -1,4 +1,7 @@
+@layer base, primereact, utilities;
+
 @import "tailwindcss";
+@import "./theme.css" layer(primereact);
 
 @theme {
   /* blue color palette  */
@@ -28,9 +31,11 @@
         format("truetype");
   }
 }
+
 .bangers-font {
   font-family: "bangers";
 }
+
 .general-font {
   font-family: "general";
 }
@@ -44,14 +49,16 @@
 body {
   font-family: "general", sans-serif;
   width: 100dvw;
-  background-color: black;
+  background-color: rgb(36, 36, 36);
   overflow-x: hidden;
 }
+
 html {
   /* removes scroll bar IE Edge and Firefox */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 /* removes scroll bar chrome safari and opera */
 html::-webkit-scrollbar {
   display: none;

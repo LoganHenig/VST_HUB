@@ -15,35 +15,39 @@
 
 @layer base {
   @font-face {
-    font-family: 'bangers';
-    src: local('Bangers'), url('/public/Iceland-Regular.ttf') format('truetype');
+    font-family: "bangers";
+    src:
+      local("Bangers"),
+      url("/public/Iceland-Regular.ttf") format("truetype");
   }
   @font-face {
-    font-family: 'general';
-    src: local('general'), url('/public/Quicksand/Quicksand-VariableFont_wght.ttf') format('truetype');
+    font-family: "general";
+    src:
+      local("general"),
+      url("/public/Quicksand/Quicksand-VariableFont_wght.ttf")
+        format("truetype");
   }
 }
-.bangers-font{
-  font-family: 'bangers';
+.bangers-font {
+  font-family: "bangers";
 }
-.general-font{
-  font-family: 'general';
+.general-font {
+  font-family: "general";
 }
 
 @layer utilities {
-
-  .mask-clip-path{
-    clip-path: polygon(0 0, 100% 0 , 100% 200%, 0 100%);
+  .mask-clip-path {
+    clip-path: polygon(0 0, 100% 0, 100% 200%, 0 100%);
   }
 }
 
-body{
-  font-family: 'general', sans-serif;
+body {
+  font-family: "general", sans-serif;
   width: 100dvw;
   background-color: black;
   overflow-x: hidden;
 }
-html{
+html {
   /* removes scroll bar IE Edge and Firefox */
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -53,32 +57,27 @@ html::-webkit-scrollbar {
   display: none;
 }
 
-
-@media (min-width: 768px) { /* Tailwind's md breakpoint */
-  .video-width{
+@media (min-width: 768px) {
+  /* Tailwind's md breakpoint */
+  .video-width {
     width: 100%;
     /* min-height: 45rem; */
     top: -2rem;
-
-}
-  .video-clip-path{
-    
+  }
+  .video-clip-path {
   }
 }
 
-@media (min-width: 1024px) { /* Tailwind's lg breakpoint */
-  .video-width{
+@media (min-width: 1024px) {
+  /* Tailwind's lg breakpoint */
+  .video-width {
     width: 88%;
     /* min-height: 45rem; */
     top: -2rem;
-}
-  .video-clip-path{
+  }
+  .video-clip-path {
     /* clip-path: polygon(100% 0%, 83% 63%, 100% 100%, 18% 99%, 0 58%, 25% 0%); */
     /* clip-path: polygon(100% 18%, 83% 63%, 94% 81%, 15% 82%, 0 58%, 26% 17%); */
     clip-path: polygon(100% 27%, 80% 63%, 93% 77%, 15% 82%, 0 58%, 26% 17%);
-    
   }
 }
-
-
-

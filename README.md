@@ -1,6 +1,6 @@
 Application details:
-  React.js
-  Vite Bundler
+React.js
+Vite Bundler
 
-To run the application: 
-  npm run dev
+To run the application:
+npm run dev

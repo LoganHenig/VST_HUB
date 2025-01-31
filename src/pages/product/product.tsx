@@ -1,12 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-export const Product = () =>{
-    const navigate = useNavigate();
-    const { id } = useParams();
+export const Product = () => {
+  const navigate = useNavigate();
 
+  const { id } = useParams();
 
-    return (<>
+  return (
+    <>
+      <span className="invert-color">
         <h1>Hello, World! Product page {id}</h1>
-        <button onClick={ ()=>{navigate('/')} } />
-    </>)
-}
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        />
+      </span>
+    </>
+  );
+};

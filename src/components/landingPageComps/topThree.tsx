@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { ProductCard } from "../pcard";
+import { ProductCard } from "../card";
 import "./landingComp.css";
+
 export const TopThree = () => {
   const [topThree] = useState([
     {

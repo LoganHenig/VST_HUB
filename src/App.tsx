@@ -1,4 +1,3 @@
-import "primereact/resources/themes/lara-light-teal/theme.css";
 import "./index.css";
 
 import { BrowserRouter, Route, Routes } from "react-router";

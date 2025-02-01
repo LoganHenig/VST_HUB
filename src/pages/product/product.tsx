@@ -1,20 +1,30 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { Editor, EditorTextChangeEvent } from "primereact/editor";
+import { Button } from "primereact/button";
+import { useState } from "react";
 
 export const Product = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
+  const [text, setText] = useState<string>("");
 
   return (
     <>
-      <span className="invert-color">
-        <h1>Hello, World! Product page {id}</h1>
-        <button
+      <div className="invert-color" style={{ color: "white" }}>
+        <Button
+          label="Go Home"
           onClick={() => {
             navigate("/");
           }}
         />
-      </span>
+        <Editor
+          value={text}
+          onTextChange={(e: EditorTextChangeEvent) => setText(e.htmlValue)}
+          style={{ height: "320px" }}
+        />
+        {text}
+      </div>
     </>
   );
 };

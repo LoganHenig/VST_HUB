@@ -16,7 +16,7 @@ export const login = async (username: string, password: string) => {
       const data = await response.json();
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("user_id", data?.user?._id);
-      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event("login"));
       return null;
     } else {
       const errorData = await response.json();

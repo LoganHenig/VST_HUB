@@ -15,8 +15,13 @@ export const Navbar = () => {
 
   const navigate = useNavigate();
 
-  window.addEventListener("storage", async () => {
+  window.addEventListener("login", async () => {
     const id = localStorage.getItem("user_id");
+    if (id === null || id === undefined) {
+      console.log("here");
+      return;
+    }
+
     const response = await fetch(`http://localhost:8000/user/${id}/`, {
       method: "GET",
       headers: {

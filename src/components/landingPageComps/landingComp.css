@@ -3,6 +3,21 @@
   top: 12dvw;
   left: 3dvw;
 }
+.VST-HUB-RGB{
+  background: linear-gradient( to right,
+    #fc72ff, #8f68ff, #487bff, #8f68ff, #fc72ff
+  );
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animate-vst-gradient 2.5s linear infinite;
+}
+@keyframes animate-vst-gradient {
+  to{
+    background-position: 200%;
+  }
+}
 @media (min-width: 768px) {
   .bg-white {
     background-color: transparent;
@@ -23,7 +38,7 @@
 }
 
 .layer2 {
-  background-image: url("../../assets/layered-waves-gradient.svg");
+  background-image: url("../../assets/layered-peaks-light.svg");
   min-width: 80rem;
   position: absolute;
   background-color: white;
@@ -31,6 +46,7 @@
   min-height: 5rem;
   z-index: -1;
 }
+
 .spacer {
   aspect-ratio: 960/540;
 
@@ -78,6 +94,7 @@
 .invert-text{
   filter: invert(1);
   mix-blend-mode: difference ;
+  z-index: 100;
 }
 
 /* BUY SELL CSS */

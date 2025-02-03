@@ -19,7 +19,7 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
-// ✅ Function to dynamically load the correct CSS file
+// Function to dynamically load the correct CSS file
 const setThemeCSS = (isDark: boolean) => {
   const themeId = "prime-theme"; // ID to manage our <link> tag
   let themeLink = document.getElementById(themeId) as HTMLLinkElement;
@@ -31,7 +31,7 @@ const setThemeCSS = (isDark: boolean) => {
     document.head.appendChild(themeLink);
   }
 
-  // ✅ Change href dynamically
+  // Change href dynamically
   themeLink.href = isDark
     ? "src/assets/primeReactStyles/vstRealmDarkMode.css"
     : "src/assets/primeReactStyles/vstRealmLightMode.css";
@@ -42,7 +42,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => 
     localStorage.getItem("theme") === "dark"
   );
 
-  // ✅ Load correct theme on initial render
+  // Load correct theme on initial render
   useEffect(() => {
     setThemeCSS(darkMode);
     if (darkMode) {

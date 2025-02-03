@@ -9,14 +9,14 @@ export const Hero = () => {
           id="video-frame"
           className=" relative z-10 video-width overflow-hidden rounded-lg flex justify-center"
         >
-          <div className={`${ darkMode ? 'text-black' :'text-white'} VST-HUB-heading text-7xl z-80 bangers-font flex flex-col invert-color`}>
+          <div className={` VST-HUB-heading text-7xl z-80 bangers-font flex flex-col invert-text`}>
             <p>
               <b>VST HUB</b>
             </p>
             <div className="">FIND YOUR SOUND</div>
             {/* ADD GET STARTED BUTTON */}
           </div>
-          <div className={`${ darkMode ? 'bg-white' : 'bg-vst-blue-900'} width-100 overflow-x-hidden video-clip-path min-w-3xl lg:m-10 md:m-8 m-0 flex justify-center items-center`}>
+          <div className={`bg-primary-color width-100 overflow-x-hidden video-clip-path min-w-3xl lg:m-10 md:m-8 m-0 flex justify-center items-center`}>
             <video
               muted
               loop

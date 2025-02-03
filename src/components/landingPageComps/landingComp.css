@@ -2,8 +2,6 @@
   position: absolute;
   top: 12dvw;
   left: 3dvw;
-  filter: invert(1);
-  mix-blend-mode: exclusion ;
 }
 @media (min-width: 768px) {
   .bg-white {
@@ -76,6 +74,10 @@
   filter: invert(1);
   mix-blend-mode: difference;
   background-repeat: no-repeat;
+}
+.invert-text{
+  filter: invert(1);
+  mix-blend-mode: difference ;
 }
 
 /* BUY SELL CSS */

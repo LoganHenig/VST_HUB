@@ -33,8 +33,8 @@ const setThemeCSS = (isDark: boolean) => {
 
   // ✅ Change href dynamically
   themeLink.href = isDark
-    ? "https://unpkg.com/primereact/resources/themes/lara-dark-blue/theme.css"
-    : "https://unpkg.com/primereact/resources/themes/lara-light-blue/theme.css";
+    ? "src/assets/primeReactStyles/vstRealmDarkMode.css"
+    : "src/assets/primeReactStyles/vstRealmLightMode.css";
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => {

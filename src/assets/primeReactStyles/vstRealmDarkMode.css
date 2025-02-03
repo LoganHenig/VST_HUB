@@ -1,3 +1,6 @@
-.p-card-body{
-    background-color: grey;
+.text-primary-color{
+ color: white
+}
+.bg-primary-color{
+    background-color: oklch(17% 0.03 250);
 }

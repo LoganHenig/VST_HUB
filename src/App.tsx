@@ -11,27 +11,36 @@ import { NotFound } from "./pages/notFound/notFound";
 import { Profile } from "./pages/profile/profile";
 import { Navbar } from "./components/navbar";
 
+import { Provider } from "react-redux";
+import { persistor, store } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+
 export const App = () => {
   const config = {
     ripple: true,
   };
 
   return (
-    <main className="relative min-h-screen w-screen overflow-x-hidden remove-scroll-bar">
-      <PrimeReactProvider value={config}>
-        <BrowserRouter>
-          <span className="block m-6">
-            <Navbar />
-          </span>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </PrimeReactProvider>
+    <main className="relative min-h-screen w-screen overflow-x-hidden remove-scroll-bar bg-primary-background">
+      <Provider store={store}>  
+        <PersistGate loading={null} persistor={persistor}>   
+          <PrimeReactProvider value={config}>
+            <BrowserRouter>
+              <span className="block m-6">
+                <Navbar />
+              </span>
+              <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </PrimeReactProvider>
+        </PersistGate> 
+      </Provider>
+
     </main>
   );
 };

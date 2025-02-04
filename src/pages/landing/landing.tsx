@@ -6,13 +6,10 @@ import { Hero } from "../../components/landingPageComps/hero";
 import { TopThree } from "../../components/landingPageComps/topThree";
 import { Compare } from "../../components/landingPageComps/compare";
 import { BuySell } from "../../components/landingPageComps/buySell";
-import { useTheme } from "../../context/themeContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Landing = () => {
-  
-  const { darkMode, setDarkMode } = useTheme();
   useGSAP(() => {
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
@@ -35,17 +32,11 @@ export const Landing = () => {
 
   return (
     <>
-            <button
-          onClick={() => setDarkMode(!darkMode)}
-          className={`p-2 border rounded-md ${darkMode ? 'bg-vst-blue-200 text-vst-blue-900' : 'bg-vst-blue-700 text-vst-blue-100'}`}
-        >
-        Toggle {darkMode ? "Light" : "Dark"} Mode
-      </button>
       <Hero />
       <TopThree />
       <Compare />
       <BuySell />
-      <div className="layer2 spacer"></div>
+      <div className="waves-container waves-svg spacer"></div>
     </>
   );
 };

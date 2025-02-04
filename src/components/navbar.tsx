@@ -6,8 +6,14 @@ import { useNavigate } from "react-router";
 import { Logout } from "./auth/logout";
 import LoginModal from "./auth/login";
 import CreateAccountModal from "./auth/createAccount";
+// import { useAppDispatch, useAppSelector } from "../utils/hooks";
+import { useTheme } from "../context/themeContext";
 
 export const Navbar = () => {
+  
+  const { darkMode, setDarkMode } = useTheme();
+  // const store = useAppSelector((store) => store.user);
+  // const dispatch = useAppDispatch();
   const [user, setUser] = useState(null);
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
   const [createAccountVisible, setCreateAccountVisible] =
@@ -60,6 +66,17 @@ export const Navbar = () => {
         icon="pi pi-box"
         onClick={() => {
           navigate("/search");
+        }}
+        size="small"
+        text
+        severity="secondary"
+        style={{ color: "white" }}
+      />
+      <Button
+        label={darkMode ? 'Dark Mode' : 'Light Mode'}
+        icon="pi pi-power-off"
+        onClick={() => {
+          setDarkMode(!darkMode)
         }}
         size="small"
         text

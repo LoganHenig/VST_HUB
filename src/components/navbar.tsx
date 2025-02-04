@@ -6,8 +6,11 @@ import { useNavigate } from "react-router";
 import { Logout } from "./auth/logout";
 import LoginModal from "./auth/login";
 import CreateAccountModal from "./auth/createAccount";
+import { useAppDispatch, useAppSelector } from "../utils/hooks";
 
 export const Navbar = () => {
+  const store = useAppSelector((store) => store.user);
+  const dispatch = useAppDispatch();
   const [user, setUser] = useState(null);
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
   const [createAccountVisible, setCreateAccountVisible] =
@@ -104,6 +107,7 @@ export const Navbar = () => {
 
   return (
     <div>
+
       <LoginModal visible={loginVisible} onToggle={setLoginVisible} />
       <CreateAccountModal
         visible={createAccountVisible}

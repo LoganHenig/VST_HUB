@@ -1,7 +1,8 @@
 @layer base, primereact, utilities;
 
 @import "tailwindcss";
-@import "./theme.css" layer(primereact);
+/* @import "./theme.css" layer(primereact); */
+@import "primereact/resources/themes/fluent-light/theme.css" layer(primereact);
 
 @theme {
   --color-vst-white: white;

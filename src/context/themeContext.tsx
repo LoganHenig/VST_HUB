@@ -33,8 +33,8 @@ const setThemeCSS = (isDark: boolean) => {
 
   // Change href dynamically
   themeLink.href = isDark
-    ? "src/assets/primeReactStyles/vstRealmDarkMode.css"
-    : "src/assets/primeReactStyles/vstRealmLightMode.css";
+    ? "src/assets/lightDarkThemeClasses/vstRealmDarkMode.css"
+    : "src/assets/lightDarkThemeClasses/vstRealmLightMode.css";
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => {
@@ -47,8 +47,11 @@ export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => 
     setThemeCSS(darkMode);
     if (darkMode) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark")
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.removeItem("theme")
+      console.log('remocing dark')
     }
   }, [darkMode]);
 

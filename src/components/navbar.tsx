@@ -74,7 +74,7 @@ export const Navbar = () => {
       />
       <Button
         label={darkMode ? 'Dark Mode' : 'Light Mode'}
-        icon="pi pi-box"
+        icon="pi pi-power-off"
         onClick={() => {
           setDarkMode(!darkMode)
         }}

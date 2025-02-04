@@ -20,10 +20,12 @@
 .spacer {
   aspect-ratio: 960/540;
   width: 100%;
-  min-height: 75vh;
+  max-height: 30rem;
+  min-height:fit-content;
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: bottom;
   background-size: cover;
+  overflow: hidden;
 }
 
 .layer {
@@ -33,7 +35,4 @@
 .layer2 {
   background-image: url("../../assets/layered-waves-gradient.svg");
   min-width: 80rem;
-  position: absolute;
-  bottom: 0;
-  z-index: -10;
 }

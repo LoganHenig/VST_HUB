@@ -36,7 +36,7 @@ export const Landing = () => {
       <TopThree />
       <Compare />
       <BuySell />
-      <div className="layer2 spacer"></div>
+      <div className="waves-container waves-svg spacer"></div>
     </>
   );
 };

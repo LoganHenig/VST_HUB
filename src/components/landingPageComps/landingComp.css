@@ -37,25 +37,16 @@
   width: 100%;
 }
 
-.layer2 {
-  background-image: url("../../assets/layered-peaks-light.svg");
+.waves-container {
   min-width: 80rem;
   position: absolute;
   background-color: white;
   bottom: 0;
-  min-height: 5rem;
-  z-index: -1;
+  min-height: 20rem;
 }
 
-.spacer {
-  aspect-ratio: 960/540;
 
-  width: 100%;
-  min-width: 80rem;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: cover;
-}
+
 .top-neg-20 {
   position: relative;
   top: -10rem;

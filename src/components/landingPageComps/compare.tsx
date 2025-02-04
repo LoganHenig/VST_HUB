@@ -3,7 +3,7 @@ import "./landingComp.css";
 export const Compare = () => {
   return (
     <>
-      <div className="w-screen flex pt-10 pb-10 justify-center min-h-20 items-center flex-col top-neg-20 bg-highlight-background">
+      <div className="w-screen flex pt-10 pb-20 justify-center min-h-20 items-center flex-col top-neg-20 bg-highlight-background">
         <div className=" text-4xl bangers-font underline-offset-6 underline invert mb-8 text-center">
           Compare commming SOON
         </div>

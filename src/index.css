@@ -44,15 +44,6 @@
   --color-vst-blue-700: purple;
   --color-vst-blue-800: purple;
   --color-vst-blue-900: purple; */
-  .layer2 {
-    background-image: url("./assets/layered-waves-gradient.svg");
-    min-width: 80rem;
-    position: absolute;
-    background-color: white;
-    bottom: 0;
-    min-height: 5rem;
-    z-index: -1;
-  }
 }
 
 @layer base {

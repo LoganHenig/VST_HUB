@@ -2,23 +2,23 @@ import "./landingComp.css";
 export const Hero = () => {
   return (
     <>
-      <div className="relative w-screen overflow-x-hidden flex justify-center">
+      <div className={`bg-primary-background relative w-screen overflow-x-hidden flex justify-center`}>
         <div
           id="video-frame"
-          className=" relative z-10 video-width overflow-hidden rounded-lg white flex justify-center"
+          className=" relative video-width overflow-hidden rounded-lg flex justify-center"
         >
-          <div className="VST-HUB-heading text-7xl z-40 bangers-font flex flex-col invert-color">
+          <div className={` VST-HUB-heading text-7xl bangers-font flex flex-col`}>
             <p>
-              <b>VST HUB</b>
+              <b><span className="VST-HUB-RGB">VST </span> <span className="invert-text absolute z-50"> REALM</span></b>
             </p>
-            <div className="">FIND YOUR SOUND</div>
+            <div className="invert-text">FIND YOUR SOUND</div>
             {/* ADD GET STARTED BUTTON */}
           </div>
-          <div className=" width-100 overflow-x-hidden video-clip-path min-w-3xl lg:m-10 md:m-8 m-0 bg-white flex justify-center items-center">
+          <div className={`bg-primary-content width-100 overflow-x-hidden video-clip-path min-w-3xl lg:m-10 md:m-8 m-0 flex justify-center items-center`}>
             <video
               muted
               loop
-              className="video-99 video-clip-path z-30"
+              className="video-99 video-clip-path"
               autoPlay
             >
               <source src="src\assets\audioVideo.mp4" type="video/mp4" />

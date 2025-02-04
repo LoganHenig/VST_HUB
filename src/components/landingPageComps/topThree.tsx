@@ -39,8 +39,8 @@ export const TopThree = () => {
 
   return (
     <>
-      <div className="w-screen flex justify-center min-h-20 items-center flex-col top-neg-20">
-        <div className=" text-4xl bangers-font underline-offset-6 underline invert mb-8">
+      <div className="w-screen flex justify-center min-h-20 items-center flex-col top-neg-20 bg-primary-background">
+        <div className=" text-4xl bangers-font underline-offset-6 underline mb-8 text-primary-content">
           Featured Plugins
         </div>
         <div className="flex items-center justify-center space-x-10 py-10 px-20">

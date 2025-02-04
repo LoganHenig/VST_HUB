@@ -121,7 +121,6 @@ export const Navbar = () => {
 
   return (
     <div>
-
       <LoginModal visible={loginVisible} onToggle={setLoginVisible} />
       <CreateAccountModal
         visible={createAccountVisible}

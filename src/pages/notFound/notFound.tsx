@@ -7,7 +7,7 @@ export const NotFound = () => {
       <h1>Hello, World! Theres nothing here</h1>
       <button
         onClick={() => {
-          navigate("/product/123444");
+          navigate("/");
         }}
       />
     </>

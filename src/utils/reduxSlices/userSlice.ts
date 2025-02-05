@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface userState {
-    userName: string,
-    firstName: string,
-    lastName: string,
+    email: string,
+    givenName: string,
+    familyName: string,
+    emailVerified: boolean,
 }
 
 const initialState: userState = {
-    userName: '',
-    firstName: '',
-    lastName: '',
+    email: '',
+    givenName: '',
+    familyName: '',
+    emailVerified: false,
 }
 
 export const userSlice = createSlice({
@@ -21,14 +23,14 @@ export const userSlice = createSlice({
         resetUser: () => {
             return initialState;
         },
-        setUserName: (state, action: PayloadAction<string>) => {
-            return { ...state, userName: action.payload };
+        setEmail: (state, action: PayloadAction<string>) => {
+            return { ...state, email: action.payload };
         },
-        setFirstName: (state, action: PayloadAction<string>) => {
-            return { ...state, firstName: action.payload };
+        setGivenName: (state, action: PayloadAction<string>) => {
+            return { ...state, givenName: action.payload };
         },
-        setLastName: (state, action: PayloadAction<string>) => {
-            return { ...state, lastName: action.payload };
+        setFamilyName: (state, action: PayloadAction<string>) => {
+            return { ...state, familyName: action.payload };
         }
     }
 })

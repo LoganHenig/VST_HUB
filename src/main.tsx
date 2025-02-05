@@ -3,17 +3,21 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { ThemeProvider } from "./context/themeContext.tsx";
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 if (typeof window !== "undefined") {
   window.global = window;
 }
-TimeAgo.addDefaultLocale(en)
+TimeAgo.addDefaultLocale(en);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-      <App />
+      <GoogleOAuthProvider clientId="403773071723-ic3n1agk2rgocj17o89vai556gebkmjk.apps.googleusercontent.com">
+        <App />
+      </GoogleOAuthProvider>
     </ThemeProvider>
-  </StrictMode>,
+  </StrictMode>
 );

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
+import { logout } from "../../utils/auth";
 
 export function Logout() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const logout = () => {
+  const _logout = () => {
     setLoading(true);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_id");
+    logout();
     setLoading(false);
     navigate("/");
-  };
+};  
 
-  return <Button label="Logout" onClick={logout} loading={loading} />;
+  return <Button label="Logout" onClick={_logout} loading={loading} />;
 }

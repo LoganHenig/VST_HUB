@@ -4,9 +4,6 @@ import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router";
 import { Logout } from "./auth/logout";
-import LoginModal from "./auth/login";
-import CreateAccountModal from "./auth/createAccount";
-// import { useAppDispatch, useAppSelector } from "../utils/hooks";
 import { useTheme } from "../context/themeContext";
 
 export const Navbar = () => {
@@ -15,9 +12,6 @@ export const Navbar = () => {
   // const store = useAppSelector((store) => store.user);
   // const dispatch = useAppDispatch();
   const [user, setUser] = useState(null);
-  const [loginVisible, setLoginVisible] = useState<boolean>(false);
-  const [createAccountVisible, setCreateAccountVisible] =
-    useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -27,7 +21,7 @@ export const Navbar = () => {
       return;
     }
 
-    const response = await fetch(`http://localhost:8000/user/${id}/`, {
+    const response = await fetch(`http://localhost:8108/user/${id}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +90,7 @@ export const Navbar = () => {
         className="font-bold text-bluegray-50 m-auto ml-1 mr-6"
         style={{ color: "white" }}
       >
-        {user?.first_name} {user?.last_name}
+        {user?.given_name} {user?.family_name}
       </span>
       <Logout />
     </>
@@ -107,24 +101,13 @@ export const Navbar = () => {
       <Button
         label="Login"
         icon="pi pi-user"
-        onClick={() => setLoginVisible(true)}
-      />
-      <Button
-        label="Create Account"
-        icon="pi pi-plus"
-        onClick={() => setCreateAccountVisible(true)}
-        className="ml-2"
+        onClick={() => navigate("/users/login")}
       />
     </>
   );
 
   return (
     <div>
-      <LoginModal visible={loginVisible} onToggle={setLoginVisible} />
-      <CreateAccountModal
-        visible={createAccountVisible}
-        onToggle={setCreateAccountVisible}
-      />
       <div className="card" id="navbar">
         <Toolbar
           start={startContent}

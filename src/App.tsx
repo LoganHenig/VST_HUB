@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { PrimeReactProvider } from "primereact/api";
 
 import { Landing } from "./pages/landing/landing";
+import { Login } from "./pages/auth/login";
+import { Signup } from "./pages/auth/signup";
 import { Search } from "./pages/search/search";
 import { Product } from "./pages/product/product";
 import { NotFound } from "./pages/notFound/notFound";
@@ -31,6 +33,8 @@ export const App = () => {
               </span>
               <Routes>
                 <Route path="/" element={<Landing />} />
+                <Route path="/users/login" element={<Login />} />
+                <Route path="/users/signup" element={<Signup />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/product/:id" element={<Product />} />
@@ -40,7 +44,6 @@ export const App = () => {
           </PrimeReactProvider>
         </PersistGate> 
       </Provider>
-
     </main>
   );
 };

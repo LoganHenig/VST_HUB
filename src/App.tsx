@@ -11,7 +11,7 @@ import { Search } from "./pages/search/search";
 import { Product } from "./pages/product/product";
 import { NotFound } from "./pages/notFound/notFound";
 import { Profile } from "./pages/profile/profile";
-import { Navbar } from "./components/navbar";
+import { Navbar } from "./components/navbar/navbar";
 
 import { Provider } from "react-redux";
 import { persistor, store } from "./store";
@@ -24,8 +24,8 @@ export const App = () => {
 
   return (
     <main className="relative min-h-screen w-screen overflow-x-hidden remove-scroll-bar bg-primary-background">
-      <Provider store={store}>  
-        <PersistGate loading={null} persistor={persistor}>   
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
           <PrimeReactProvider value={config}>
             <BrowserRouter>
               <span className="block m-6">
@@ -42,7 +42,7 @@ export const App = () => {
               </Routes>
             </BrowserRouter>
           </PrimeReactProvider>
-        </PersistGate> 
+        </PersistGate>
       </Provider>
     </main>
   );

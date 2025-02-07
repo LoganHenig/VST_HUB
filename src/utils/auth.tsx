@@ -30,4 +30,5 @@ export const login = async (email: string, password: string) => {
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user_id");
+  window.dispatchEvent(new Event("logout"));
 };

@@ -1,16 +1,15 @@
 import React, { useState } from "react";
+
 import { Toolbar } from "primereact/toolbar";
-import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router";
-import { Logout } from "./auth/logout";
-import { useTheme } from "../context/themeContext";
+import { useTheme } from "../../context/themeContext";
+import { UnauthenticatedContent } from "./unauthenticated";
+
+import { AuthenticatedContent } from "./authenticated";
 
 export const Navbar = () => {
-  
   const { darkMode, setDarkMode } = useTheme();
-  // const store = useAppSelector((store) => store.user);
-  // const dispatch = useAppDispatch();
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
@@ -33,6 +32,8 @@ export const Navbar = () => {
     }
   });
 
+  window.addEventListener("logout", () => setUser(null));
+
   const startContent = (
     <React.Fragment>
       <i
@@ -51,7 +52,6 @@ export const Navbar = () => {
         }}
         size="small"
         text
-        severity="secondary"
         style={{ color: "white" }}
       />
       <Button
@@ -62,48 +62,19 @@ export const Navbar = () => {
         }}
         size="small"
         text
-        severity="secondary"
         style={{ color: "white" }}
       />
       <Button
-        label={darkMode ? 'Dark Mode' : 'Light Mode'}
+        label={darkMode ? "Dark Mode" : "Light Mode"}
         icon="pi pi-power-off"
         onClick={() => {
-          setDarkMode(!darkMode)
+          setDarkMode(!darkMode);
         }}
         size="small"
         text
-        severity="secondary"
         style={{ color: "white" }}
       />
     </React.Fragment>
-  );
-
-  const authenticatedContent = (
-    <>
-      <Avatar
-        image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
-        shape="circle"
-        className="m-auto"
-      />
-      <span
-        className="font-bold text-bluegray-50 m-auto ml-1 mr-6"
-        style={{ color: "white" }}
-      >
-        {user?.given_name} {user?.family_name}
-      </span>
-      <Logout />
-    </>
-  );
-
-  const unauthenticatedContent = (
-    <>
-      <Button
-        label="Login"
-        icon="pi pi-user"
-        onClick={() => navigate("/users/login")}
-      />
-    </>
   );
 
   return (
@@ -119,9 +90,11 @@ export const Navbar = () => {
                   margin: "auto 1.5rem",
                 }}
               >
-                {localStorage.getItem("token")
-                  ? authenticatedContent
-                  : unauthenticatedContent}
+                {user ? (
+                  <AuthenticatedContent user={user} />
+                ) : (
+                  <UnauthenticatedContent />
+                )}
               </div>
             </React.Fragment>
           }

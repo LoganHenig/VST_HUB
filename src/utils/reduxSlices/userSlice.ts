@@ -1,39 +1,54 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export interface userState {
+export interface User {
+    id: string,
     email: string,
-    givenName: string,
-    familyName: string,
-    emailVerified: boolean,
+    given_name: string,
+    family_name: string,
+    email_verified: boolean,
 }
 
-const initialState: userState = {
-    email: '',
-    givenName: '',
-    familyName: '',
-    emailVerified: false,
+export interface Account {
+    user_id: string,
+    provider: string,
+    provider_account_id: string,
+    access_token: string,
+    expires_at: string,
+    token_type: string,
+    refresh_token: string,
+    image: string
 }
 
-export const userSlice = createSlice({
-    name: 'user',
+export interface Token {
+    access_token: string,
+    token_type: string,
+    expires_in: number,
+    provider: string,
+}
+
+export interface AuthState {
+    user: User | null,
+    account: Account | null,
+    token: Token | null,
+}
+
+const initialState: AuthState = {
+    user: null,
+    account: null,
+    token: null,
+}
+
+export const authSlice = createSlice({
+    name: 'auth',
 
     initialState,
 
     reducers: {
-        resetUser: () => {
+        logout: () => {
             return initialState;
-        },
-        setEmail: (state, action: PayloadAction<string>) => {
-            return { ...state, email: action.payload };
-        },
-        setGivenName: (state, action: PayloadAction<string>) => {
-            return { ...state, givenName: action.payload };
-        },
-        setFamilyName: (state, action: PayloadAction<string>) => {
-            return { ...state, familyName: action.payload };
         }
     }
 })
 
-export const { resetUser, setEmail, setGivenName, setFamilyName } = userSlice.actions;
-export default userSlice.reducer;
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;

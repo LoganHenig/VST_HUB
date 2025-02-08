@@ -14,8 +14,7 @@ export const GoogleLogin = ({ text = "Sign in with Google" }) => {
     <Button
       label={text}
       icon="pi pi-google"
-      outlined
-      severity="info"
+      severity="contrast"
       onClick={custom_login}
     />
   );

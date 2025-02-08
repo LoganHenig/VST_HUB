@@ -23,7 +23,7 @@ export const CreateAccountCard = () => {
 
   const footer = (
     <span className="flex flex-col pt-4 items-center justify-center border-t-1 border-gray-300">
-      <GoogleLogin text="signup_with" />
+      <GoogleLogin text="Sign up with Google" />
     </span>
   )
 

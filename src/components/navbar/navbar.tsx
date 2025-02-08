@@ -19,15 +19,16 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
+    const fetchUserInfo = async (provider: string) => {
       setUser(await fetchAuthenticatedUser());
-      setAccount(await fetchActiveAccount());
+      setAccount(await fetchActiveAccount(provider));
     };
 
     const access_token = params.get("access_token");
-    if (access_token) {
+    if (access_token && user === null) {
       localStorage.setItem("token", access_token);
-      fetchUserInfo();
+      const provider = params.get("provider") || 'vst-realm';
+      fetchUserInfo(provider);
     }
   });
 

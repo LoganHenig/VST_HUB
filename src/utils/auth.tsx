@@ -33,7 +33,7 @@ export const logout = () => {
   window.dispatchEvent(new Event("logout"));
 };
 
-export const fetchActiveAccount = async (provider: string = "vst-realm") => {
+export async function fetchActiveAccount(provider: string = "vst-realm") {
   const access_token = localStorage.getItem("token");
   if (access_token == null) {
     console.log("An error occurred. Please try again later.");
@@ -45,7 +45,7 @@ export const fetchActiveAccount = async (provider: string = "vst-realm") => {
       {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
+          Accept: "application/json",
           Authorization: `Bearer ${access_token}`,
         },
       }

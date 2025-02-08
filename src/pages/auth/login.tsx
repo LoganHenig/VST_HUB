@@ -2,19 +2,9 @@ import { useNavigate } from "react-router-dom";
 
 import { LoginCard } from "../../components/auth/loginCard";
 import { GoogleLogin } from "../../components/auth/googleLogin";
-import { Button } from "primereact/button";
 
 export const Login = () => {
   const navigate = useNavigate();
-
-  const login_google = async () => {
-    const res = await fetch("http://localhost:8108/auth/google/login/");
-    const data = await res.json();
-    console.log(data);
-    const res2 = await fetch(data.url);
-    console.log(res2.json());
-    // window.dispatchEvent(new Event("login"));
-  };
 
   return (
     <>

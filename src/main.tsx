@@ -15,9 +15,7 @@ TimeAgo.addDefaultLocale(en);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-      <GoogleOAuthProvider clientId="403773071723-ic3n1agk2rgocj17o89vai556gebkmjk.apps.googleusercontent.com">
-        <App />
-      </GoogleOAuthProvider>
+      <App />
     </ThemeProvider>
   </StrictMode>
 );

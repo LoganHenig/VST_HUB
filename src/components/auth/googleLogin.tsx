@@ -1,21 +1,13 @@
-import { GoogleLogin as _GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { Button } from 'primereact/button';
 
 
-export const GoogleLogin = ({text}) => {
-    const login = useGoogleLogin({
-        flow: 'auth-code',
-        redirect_uri: 'http://localhost:8108/auth/google/authenticate/'
-    })
+export const GoogleLogin = ({ text = "Sign in with Google" }) => {
+    const custom_login = async () => {
+        const response = await fetch("http://localhost:8108/auth/google/login/");
+        const data = await response.json();
 
-    return (<span className="w-full">
-        <_GoogleLogin
-            text={text || 'signin_with'}
-            onSuccess={credentialResponse => {
-                console.log(credentialResponse)
-            }}
-            onError={() => {
-                console.log('Login Failed');
-            }}
-        />
-    </span>)
+        window.open(data.url, "_self");
+    }
+
+    return (<Button label={text} icon="pi pi-google" outlined severity='info' onClick={custom_login} />)
 }

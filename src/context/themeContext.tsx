@@ -51,7 +51,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => 
     } else {
       document.documentElement.classList.remove("dark");
       localStorage.removeItem("theme")
-      console.log('remocing dark')
+      console.log('removing dark')
     }
   }, [darkMode]);
 

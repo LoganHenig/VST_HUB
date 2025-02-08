@@ -46,8 +46,6 @@ export const Comment = (props: CommentType) => {
             <div className='ml-12'>
                 {
                 props.replys.map((comment) =>{
-                    console.log(props)
-                    console.log(comment)
                     return(
                         <Comment 
                             author={comment.author} 

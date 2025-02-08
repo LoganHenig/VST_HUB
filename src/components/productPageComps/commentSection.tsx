@@ -39,6 +39,14 @@ export const VstCommentSection = () => {
                             replys: [
                                 
                             ]
+                        },
+                        {
+                            text: "Comment 2",
+                            votes: 3,
+                            author: { name: "logan.henig@gamil.com" },
+                            replys: [
+                                
+                            ]
                         }
                     ]
                 }

@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { Reply } from './reply';
 import { CommentType } from '../../vstTypes';
 
-
-
-
 export const Comment = (props: CommentType) => {
     const [votes, setVotes] = useState(props.votes)
     const [replyInputVisible, setReplyInputVisible] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Toolbar } from "primereact/toolbar";
 import { Button } from "primereact/button";
@@ -7,32 +7,39 @@ import { useTheme } from "../../context/themeContext";
 import { UnauthenticatedContent } from "./unauthenticated";
 
 import { AuthenticatedContent } from "./authenticated";
+import { fetchActiveAccount, fetchAuthenticatedUser } from "../../utils/auth";
+import { useSearchParams } from "react-router";
 
 export const Navbar = () => {
   const { darkMode, setDarkMode } = useTheme();
+  const [params] = useSearchParams();
   const [user, setUser] = useState(null);
+  const [account, setAccount] = useState(null);
 
   const navigate = useNavigate();
 
-  window.addEventListener("login", async () => {
-    const id = localStorage.getItem("user_id");
-    if (id === null || id === undefined) {
-      return;
-    }
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      setUser(await fetchAuthenticatedUser());
+      setAccount(await fetchActiveAccount());
+    };
 
-    const response = await fetch(`http://localhost:8108/user/${id}/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.ok) {
-      setUser(await response.json());
+    const access_token = params.get("access_token");
+    if (access_token) {
+      localStorage.setItem("token", access_token);
+      fetchUserInfo();
     }
   });
 
-  window.addEventListener("logout", () => setUser(null));
+  window.addEventListener("login", async () => {
+    setUser(await fetchAuthenticatedUser());
+    setAccount(await fetchActiveAccount());
+  });
+
+  window.addEventListener("logout", () => {
+    setUser(null);
+    setAccount(null);
+  });
 
   const startContent = (
     <React.Fragment>
@@ -91,7 +98,7 @@ export const Navbar = () => {
                 }}
               >
                 {user ? (
-                  <AuthenticatedContent user={user} />
+                  <AuthenticatedContent user={user} account={account} />
                 ) : (
                   <UnauthenticatedContent />
                 )}

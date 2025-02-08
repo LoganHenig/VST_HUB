@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "primereact/button";
 
-import { logout } from "../../utils/auth";
+import {
+  fetchActiveAccount,
+  fetchAuthenticatedUser,
+  logout,
+} from "../../utils/auth";
 
 export function Profile() {
   const navigate = useNavigate();
+
+  const [user, setUser] = useState(null);
+  const [account, setAccount] = useState(null);
 
   const _logout = () => {
     logout();
@@ -14,29 +21,24 @@ export function Profile() {
   };
 
   useEffect(() => {
-    const verifyToken = async () => {
-      const token = localStorage.getItem("token");
-      try {
-        const response = await fetch(
-          `http://localhost:8108/auth/local/verify-token/${token}/`
-        );
-
-        if (!response.ok) {
-          throw new Error("Token verification failed");
-        }
-      } catch (error) {
-        localStorage.removeItem("token");
-        navigate("/");
-      }
+    const fetchUserInfo = async () => {
+      setUser(await fetchAuthenticatedUser());
+      setAccount(await fetchActiveAccount());
     };
 
-    verifyToken();
+    fetchUserInfo();
   }, [navigate]);
 
   return (
-    <div>
-      <p>This is a protected page. Only visible to authenticated users.</p>
-      <Button label="Logout" icon="pi pi-sign-out" onClick={_logout} />
+    <div className="flex flex-col gap-2 justify-center align-center m-auto p-10">
+      <pre>User: {JSON.stringify(user, null, 2)}</pre>
+      <pre>Account: {JSON.stringify(account, null, 2)}</pre>
+      <Button
+        className="w-50"
+        label="Logout"
+        icon="pi pi-sign-out"
+        onClick={_logout}
+      />
     </div>
   );
 }

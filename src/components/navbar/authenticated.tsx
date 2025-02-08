@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 
 import { logout } from "../../utils/auth";
 
-export const AuthenticatedContent = ({ user, image = null }) => {
+export const AuthenticatedContent = ({ user, account }) => {
   const navigate = useNavigate();
   const menu = useRef(null);
 
@@ -28,8 +28,8 @@ export const AuthenticatedContent = ({ user, image = null }) => {
             onClick={() => navigate("/profile")}
             className="w-full p-link flex align-items-center p-2 pl-4 text-color hover:bg-gray-200 border-noround"
           >
-            {image ? (
-              <Avatar image={image} className="mr-2" shape="circle" />
+            {account?.image ? (
+              <Avatar image={account.image} className="mr-2" shape="circle" />
             ) : (
               <Avatar label={initials()} className="mr-2" shape="circle" />
             )}
@@ -58,9 +58,9 @@ export const AuthenticatedContent = ({ user, image = null }) => {
     <>
       <Menu model={items} popup ref={menu} id="pofile_menu" />
 
-      {image ? (
+      {account?.image ? (
         <Avatar
-          image={image}
+          image={account.image}
           shape="circle"
           size="large"
           className="m-auto"

@@ -36,8 +36,6 @@ export const Landing = () => {
     });
   });
 
-  // const navigate = useNavigate();
-
   return (
     <>
       <Hero />

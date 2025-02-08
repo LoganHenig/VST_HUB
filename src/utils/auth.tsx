@@ -4,13 +4,16 @@ export const login = async (email: string, password: string) => {
   formDetails.append("password", password);
 
   try {
-    const response = await fetch("http://localhost:8108/auth/local/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: formDetails,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BASE_API_URL}/auth/local/login/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formDetails,
+      }
+    );
 
     if (response.ok) {
       const data = await response.json();
@@ -41,7 +44,7 @@ export async function fetchActiveAccount(provider: string = "vst-realm") {
 
   try {
     const response = await fetch(
-      `http://localhost:8108/auth/account/?provider=${provider}`,
+      `${import.meta.env.VITE_BASE_API_URL}/auth/account/?provider=${provider}`,
       {
         method: "GET",
         headers: {
@@ -62,7 +65,7 @@ export async function fetchActiveAccount(provider: string = "vst-realm") {
   } catch {
     console.log("An error occurred. Please try again later.");
   }
-};
+}
 
 export const fetchAuthenticatedUser = async () => {
   const access_token = localStorage.getItem("token");
@@ -71,13 +74,16 @@ export const fetchAuthenticatedUser = async () => {
   }
 
   try {
-    const response = await fetch("http://localhost:8108/auth/user/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BASE_API_URL}/auth/user/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
 
     if (response.ok) {
       return await response.json();

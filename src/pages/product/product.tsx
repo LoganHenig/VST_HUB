@@ -1,14 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
 // import { Editor, EditorTextChangeEvent } from "primereact/editor";
 // import { Button } from "primereact/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageAndDiscription } from "../../components/productPageComps/imageAndDiscription";
 import { ProductTabSelect } from "../../components/productPageComps/productTabSelect";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
+import { setId } from "../../utils/reduxSlices/productSlice";
 
 export const Product = () => {
   const navigate = useNavigate();
 
+  const dispatch = useAppDispatch();
+
   const { id } = useParams();
+  useEffect(() => {
+    if(id){
+      dispatch(setId(id))
+    }
+  },[id])
   const [text, setText] = useState<string>("");
 
   return (

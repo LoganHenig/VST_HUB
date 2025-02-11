@@ -1,5 +1,5 @@
 export type CommentType = {
-    text: string,
+    message: string,
     votes: number,
     author: User,
     replys: CommentType[],

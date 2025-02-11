@@ -5,6 +5,7 @@ import { Reply } from './reply';
 import { CommentType } from '../../vstTypes';
 
 export const Comment = (props: CommentType) => {
+    console.log(props)
     const [votes, setVotes] = useState(props.votes)
     const [replyInputVisible, setReplyInputVisible] = useState(false);
     const [commentRepliesVisible, setCommentRepliesVisible] = useState(true);
@@ -25,7 +26,7 @@ export const Comment = (props: CommentType) => {
             />
             <div className="w-full flex flex-col">
                 <div className='text-secondary-content text-sm'>{props.author.name}<span className='text-xs'>1 week ago</span></div>
-                <div className='text-primary-content'>{props.text}</div>
+                <div className='text-primary-content'>{props.message}</div>
             </div>
         </div>
         <div className='flex flex-row ml-16 items-center'>
@@ -64,7 +65,7 @@ export const Comment = (props: CommentType) => {
                         return(
                             <Comment 
                                 author={comment.author} 
-                                text={comment.text} 
+                                message={comment.message} 
                                 replys={comment.replys}
                                 votes={comment.votes}    
                             />

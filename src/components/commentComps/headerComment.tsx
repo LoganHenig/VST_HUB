@@ -5,10 +5,30 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { useState } from 'react';
 import 'primeicons/primeicons.css';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import axios from 'axios';
+import { addCommentInStore } from '../../utils/reduxSlices/productSlice';
 export const HeaderComment = () => {
-        
+    const productStore = useAppSelector((store) => store.product);
     const [userComment, setUserComment] = useState("");
     const [advancedEditor, setAdvancedEditor] = useState(false);
+    const dispatch = useAppDispatch();
+
+    const postComment = () => {
+
+
+        if(userComment){
+            axios.post(`http://localhost:8108/comment/${productStore.id}`, {
+                message: userComment,
+                user_id: 'testUser',
+            })
+            .then(res => {
+                dispatch(addCommentInStore(res.data))
+                setUserComment("")
+            })
+        }      
+    }
+
     return(
     <>
         <div className='w-full flex flex-row justify-start pt-8 items-start'>
@@ -36,7 +56,7 @@ export const HeaderComment = () => {
         </div>
         <div className='w-full flex flex-row justify-end my-2'>
         <Button label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} className="p-button-outlined p-button-rounded  text-s py-0 px-2 mx-2" />
-        <Button label="Post" onClick={()=>{console.log('post')}} className="p-button-raised p-button-rounded  text-s py-0 px-3 " icon=" pi pi-send"/>
+        <Button label="Post" onClick={()=>{postComment()}} className="p-button-raised p-button-rounded  text-s py-0 px-3 " icon=" pi pi-send"/>
         </div>
 
     </>

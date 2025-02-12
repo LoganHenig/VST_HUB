@@ -44,7 +44,7 @@ const initialState: AuthState = {
   token: null,
 };
 
-const AuthContext = createContext<AuthState>(initialState);
+export const AuthContext = createContext(initialState);
 
 // Custom Hook to access AuthState
 export const useAuth = (): AuthState => {
@@ -53,4 +53,22 @@ export const useAuth = (): AuthState => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
+};
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [account, setAccount] = useState<Account | null>(null);
+  const [token, setToken] = useState<Token | null>(null);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user: [user, setUser],
+        account: [account, setAccount],
+        token: [token, setToken],
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };

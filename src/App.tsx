@@ -28,9 +28,7 @@ export const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <PrimeReactProvider value={config}>
             <BrowserRouter>
-              <span className="block m-6">
-                <Navbar />
-              </span>
+              <span className="block m-6">{/* <Navbar /> */}</span>
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/users/login" element={<Login />} />

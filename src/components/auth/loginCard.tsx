@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useMountEffect } from "primereact/hooks";
 import { useNavigate } from "react-router";
 
@@ -8,11 +8,15 @@ import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
 import { Messages } from "primereact/messages";
 
-import { login } from "../../utils/auth";
+import { login as local_login } from "../../utils/auth/local";
+import { login as google_login } from "../../utils/auth/google";
 
 import "./auth.css";
+import { GoogleLogin } from "./googleLogin";
+import { AuthContext } from "../../context/authContext";
 
 export const LoginCard = () => {
+  const { setToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,14 +26,28 @@ export const LoginCard = () => {
 
   useMountEffect(() => {});
 
-  const _login = async () => {
+  const _login = async (provider: string = "local") => {
+    let data = null;
+    let error = null;
     setLoading(true);
     msgs.current?.clear();
 
-    const error = await login(email, password);
-    setLoading(false);
+    if (provider === "local") {
+      const { data: _data, error: _error } = await local_login(email, password);
+      data = _data;
+      error = _error;
+      console.log(data, error);
+    } else if (provider === "google") {
+      const { data: _data, error: _error } = await google_login();
+      data = _data;
+      error = _error;
+    } else {
+      return;
+    }
 
-    if (error === null) {
+    setLoading(false);
+    if (error === null && data !== null) {
+      setToken(data?.access_token);
       navigate("/");
     }
 
@@ -49,8 +67,8 @@ export const LoginCard = () => {
   };
 
   const footer = (
-    <>
-      <span className="flex pt-4 items-center justify-center border-t-1 border-gray-300">
+    <span className="flex flex-col gap-4">
+      <span className="flex py-4 items-center justify-center border-t-1 border-b-1 border-gray-300">
         <p>New user?</p>
         <Button
           label="Create Account"
@@ -58,7 +76,8 @@ export const LoginCard = () => {
           onClick={() => navigate(`/users/signup`)}
         />
       </span>
-    </>
+      <GoogleLogin />
+    </span>
   );
 
   return (

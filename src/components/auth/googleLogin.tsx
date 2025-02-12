@@ -4,7 +4,7 @@ import { useState } from "react";
 export const GoogleLogin = ({ text = "Sign in with Google" }) => {
   const [loading, setLoading] = useState(false);
 
-  const custom_login = async () => {
+  const login = async () => {
     setLoading(true);
 
     try {
@@ -30,7 +30,7 @@ export const GoogleLogin = ({ text = "Sign in with Google" }) => {
       icon="pi pi-google"
       severity="contrast"
       loading={loading}
-      onClick={custom_login}
+      onClick={login}
     />
   );
 };

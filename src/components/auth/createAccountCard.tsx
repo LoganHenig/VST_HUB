@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
-import { login } from "../../utils/auth";
+import { login } from "../../utils/auth/local";
 import { GoogleLogin } from "./googleLogin";
 import { Card } from "primereact/card";
 

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { data, useSearchParams } from "react-router";
 
 import { Toolbar } from "primereact/toolbar";
 import { Button } from "primereact/button";
@@ -7,39 +8,27 @@ import { useTheme } from "../../context/themeContext";
 import { UnauthenticatedContent } from "./unauthenticated";
 
 import { AuthenticatedContent } from "./authenticated";
-import { fetchActiveAccount, fetchAuthenticatedUser } from "../../utils/auth";
-import { useSearchParams } from "react-router";
+import { fetchUser, fetchAccount } from "../../utils/auth/base";
+import { AuthContext } from "../../context/authContext";
 
 export const Navbar = () => {
   const { darkMode, setDarkMode } = useTheme();
   const [params] = useSearchParams();
-  const [user, setUser] = useState(null);
-  const [account, setAccount] = useState(null);
+  const { user, setUser, account, setAccount, token, setToken } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserInfo = async (provider: string) => {
-      setUser(await fetchAuthenticatedUser());
-      setAccount(await fetchActiveAccount(provider));
-    };
-
     const access_token = params.get("access_token");
-    if (access_token && user === null) {
-      localStorage.setItem("token", access_token);
-      const provider = params.get("provider") || 'vst-realm';
-      fetchUserInfo(provider);
+    if (access_token) {
+      setToken({
+        access_token: access_token,
+        token_type: params.get("token_type") || "vst-realm",
+        expires_in: params.get("expires_in"),
+        provider: params.get("provider"),
+      });
     }
-  });
-
-  window.addEventListener("login", async () => {
-    setUser(await fetchAuthenticatedUser());
-    setAccount(await fetchActiveAccount());
-  });
-
-  window.addEventListener("logout", () => {
-    setUser(null);
-    setAccount(null);
   });
 
   const startContent = (

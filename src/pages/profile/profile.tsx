@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "primereact/button";
 
-import {
-  fetchActiveAccount,
-  fetchAuthenticatedUser,
-  logout,
-} from "../../utils/auth";
+// import {
+//   fetchActiveAccount,
+//   fetchAuthenticatedUser,
+//   logout,
+// } from "../../utils/auth";
 
 export function Profile() {
   const navigate = useNavigate();
@@ -15,19 +15,19 @@ export function Profile() {
   const [user, setUser] = useState(null);
   const [account, setAccount] = useState(null);
 
-  const _logout = () => {
-    logout();
-    navigate("/");
-  };
+  // const _logout = () => {
+  //   logout();
+  //   navigate("/");
+  // };
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      setUser(await fetchAuthenticatedUser());
-      setAccount(await fetchActiveAccount());
-    };
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     setUser(await fetchAuthenticatedUser());
+  //     setAccount(await fetchActiveAccount());
+  //   };
 
-    fetchUserInfo();
-  }, [navigate]);
+  //   fetchUserInfo();
+  // }, [navigate]);
 
   return (
     <div className="flex flex-col gap-2 justify-center align-center m-auto p-10">
@@ -37,7 +37,7 @@ export function Profile() {
         className="w-50"
         label="Logout"
         icon="pi pi-sign-out"
-        onClick={_logout}
+        // onClick={_logout}
       />
     </div>
   );

@@ -5,19 +5,12 @@ import { MenuItem } from "primereact/menuitem";
 import { Avatar } from "primereact/avatar";
 import { useNavigate } from "react-router";
 
-import { logout } from "../../utils/auth";
-
 export const AuthenticatedContent = ({ user, account }) => {
   const navigate = useNavigate();
   const menu = useRef(null);
 
   const initials = () => {
     return `${user?.given_name.charAt(0)}${user?.family_name.charAt(0)}`.toUpperCase();
-  };
-
-  const _logout = () => {
-    logout();
-    navigate("/");
   };
 
   const items: MenuItem[] = [
@@ -50,7 +43,7 @@ export const AuthenticatedContent = ({ user, account }) => {
     {
       label: "Logout",
       icon: "pi pi-sign-out",
-      command: () => _logout(),
+      // command: () => _logout(),
     },
   ];
 

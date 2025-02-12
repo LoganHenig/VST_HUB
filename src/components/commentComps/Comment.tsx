@@ -41,17 +41,17 @@ export const Comment = (props: CommentType) => {
                 <Reply/>
             </div>
         }
-        {props.replys &&
+        {props.replies &&
             <div className="relative">
                 {   
-                    props.replys.length > 1 && commentRepliesVisible &&
+                    props.replies.length > 1 && commentRepliesVisible &&
                     <div className='absolute top-2 left-6'>
                         <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-minus-circle' onClick={()=>{setCommentRepliesVisible(false)}}/>
                     </div>
 
                 }
                 {   
-                    props.replys.length > 1 && !commentRepliesVisible &&
+                    props.replies.length > 1 && !commentRepliesVisible &&
                     <>
                         <div className=' relative flex flex-row left-6 top-2'>
                             <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-plus-circle' onClick={()=>{setCommentRepliesVisible(true)}}/>
@@ -61,12 +61,12 @@ export const Comment = (props: CommentType) => {
                 }
                 <div className='ml-12'>
                     { commentRepliesVisible &&
-                    props.replys.map((comment) =>{
+                    props.replies.map((comment) =>{
                         return(
                             <Comment 
                                 author={comment.author} 
                                 message={comment.message} 
-                                replys={comment.replys}
+                                replies={comment.replies}
                                 votes={comment.votes}    
                             />
                         )

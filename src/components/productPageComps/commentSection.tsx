@@ -14,9 +14,9 @@ export const VstCommentSection = () => {
     const dispatch = useAppDispatch();
     useEffect(() =>{
 
-        axios.get (`http://localhost:8108/comment/${productStore.id}`)
+        axios.get (`http://localhost:8108/comment/`)
         .then(res => {
-            dispatch(setCommentsInStore(res.data.comments));
+            dispatch(setCommentsInStore(res.data));
         })
         .catch(err => {
             dispatch(setCommentsInStore([]))
@@ -38,9 +38,9 @@ export const VstCommentSection = () => {
                             <div className="mb-4">
                                 <Comment 
                                     message={comment.message} 
-                                    votes={comment.votes}
+                                    votes={0}
                                     author={{name: 'test user'}} 
-                                    replys={comment.replys}/>
+                                    replies={comment.replies}/>
                             </div>
                         )
                     })}

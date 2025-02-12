@@ -16,11 +16,11 @@ export const HeaderComment = () => {
 
     const postComment = () => {
 
-
         if(userComment){
-            axios.post(`http://localhost:8108/comment/${productStore.id}`, {
+            axios.post(`http://localhost:8108/comment/`, {
                 message: userComment,
-                user_id: 'testUser',
+                user_id: '5eb7cf5a86d9755df3a6c593',
+                product_id: '5eb7cf5a86d9755df3a6c593',
             })
             .then(res => {
                 dispatch(addCommentInStore(res.data))
@@ -48,7 +48,7 @@ export const HeaderComment = () => {
                 }
                 {advancedEditor &&
                     <>
-                            <Editor style={{minHeight:'120px'}}/>
+                            <Editor value={userComment} style={{minHeight:'120px'}} onTextChange={(e) => setUserComment(e.htmlValue)}/>
 
                     </>
                 }

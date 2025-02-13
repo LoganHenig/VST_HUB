@@ -5,7 +5,7 @@ import "./landingComp.css";
 export const TopThree = () => {
   const [topThree] = useState([
     {
-      id: 10501,
+      id: '5eb7cf5a86d9755df3a6c593',
       title: "Kick Ninja",
       category: "Drum Synth",
       author: "The Him DSP",
@@ -14,7 +14,7 @@ export const TopThree = () => {
       rating: 5,
     },
     {
-      id: 10502,
+      id: '5eb7cf5a86d9755df3a6c594',
       title: "Egoist",
       category: "Groovebox",
       author: "Sugar Bytes",
@@ -23,7 +23,7 @@ export const TopThree = () => {
       rating: 4,
     },
     {
-      id: 10503,
+      id: '5eb7cf5a86d9755df3a6c597',
       title: "H3000 Factory Mk II",
       category: "Harmonizer",
       author: "Eventide",

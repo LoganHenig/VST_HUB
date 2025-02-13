@@ -1,7 +1,9 @@
 export type CommentType = {
+    _id: string,
     message: string,
     votes: number,
-    author: User,
+    created_at: Date,
+    author: string,
     replies: CommentType[],
 }
 type User = {

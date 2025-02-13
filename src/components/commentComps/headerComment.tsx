@@ -20,7 +20,7 @@ export const HeaderComment = () => {
             axios.post(`http://localhost:8108/comment/`, {
                 message: userComment,
                 user_id: '5eb7cf5a86d9755df3a6c593',
-                product_id: '5eb7cf5a86d9755df3a6c593',
+                product_id: productStore.id,
             })
             .then(res => {
                 dispatch(addCommentInStore(res.data))

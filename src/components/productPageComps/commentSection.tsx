@@ -13,20 +13,28 @@ export const VstCommentSection = () => {
     const productStore = useAppSelector((store) => store.product);
     const dispatch = useAppDispatch();
     useEffect(() =>{
-
-        axios.get (`http://localhost:8108/comment/`)
+        axios.get (`http://localhost:8108/comment/`, {
+            params: {
+                product_id: productStore.id,
+                order_by: 'created_at'
+            }
+        })
         .then(res => {
+
             dispatch(setCommentsInStore(res.data));
+            
+            setComments(res.data)
         })
         .catch(err => {
-            dispatch(setCommentsInStore([]))
             console.log(err)
         })
     },[productStore.id])
 
     useEffect(() => {
-            setComments([...productStore.comments])
-    },[productStore])
+        setComments(productStore.comments)
+    },[productStore.comments])
+
+
     return (
         <>
             <div className="comments-container flex flex-col w-full">
@@ -37,9 +45,11 @@ export const VstCommentSection = () => {
                         return(
                             <div className="mb-4">
                                 <Comment 
+                                    _id={comment._id}
                                     message={comment.message} 
                                     votes={0}
-                                    author={{name: 'test user'}} 
+                                    created_at={comment.created_at}
+                                    author='test user' 
                                     replies={comment.replies}/>
                             </div>
                         )

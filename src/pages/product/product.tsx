@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ImageAndDiscription } from "../../components/productPageComps/imageAndDiscription";
 import { ProductTabSelect } from "../../components/productPageComps/productTabSelect";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
-import { setId } from "../../utils/reduxSlices/productSlice";
+import { setCommentsInStore, setId } from "../../utils/reduxSlices/productSlice";
 
 export const Product = () => {
   const navigate = useNavigate();
@@ -15,6 +15,8 @@ export const Product = () => {
   const { id } = useParams();
   useEffect(() => {
     if(id){
+      
+      dispatch(setCommentsInStore([]))
       dispatch(setId(id))
     }
   },[id])

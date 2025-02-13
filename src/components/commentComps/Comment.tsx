@@ -1,14 +1,20 @@
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Reply } from './reply';
 import { CommentType } from '../../vstTypes';
+import ReactTimeAgo from 'react-time-ago'
 
 export const Comment = (props: CommentType) => {
-    console.log(props)
     const [votes, setVotes] = useState(props.votes)
     const [replyInputVisible, setReplyInputVisible] = useState(false);
     const [commentRepliesVisible, setCommentRepliesVisible] = useState(true);
+    const [replies, setReplies] = useState([])
+
+    useEffect(() => {
+        console.log(props)
+        console.log('props in comment')
+    },[])
 
     const upVote = () => {
         setVotes(props.votes + 1);
@@ -25,7 +31,11 @@ export const Comment = (props: CommentType) => {
                 className="m-auto mx-4"
             />
             <div className="w-full flex flex-col">
-                <div className='text-secondary-content text-sm'>{props.author.name}<span className='text-xs'>1 week ago</span></div>
+                <div className='text-secondary-content text-sm'>{props.author} 
+                    <span className='text-xs ml-3'>
+                    {/* <ReactTimeAgo date={props.created_at}  locale="en-US"/>  */}
+                    </span>
+                </div>
                 <div className='text-primary-content'>{props.message}</div>
             </div>
         </div>
@@ -38,7 +48,7 @@ export const Comment = (props: CommentType) => {
         { replyInputVisible &&
             <div className='relative pl-8 ml-8 mt-4'>
                 <div className="absolute -top-8 left-0 h-full w-6 border-l-1 border-b-1 rounded-bl-xl border-gray-400"/>
-                <Reply/>
+                <Reply parent_id={props._id} replies={replies} setReplies={setReplies}/>
             </div>
         }
         {props.replies &&
@@ -63,8 +73,11 @@ export const Comment = (props: CommentType) => {
                     { commentRepliesVisible &&
                     props.replies.map((comment) =>{
                         return(
+                            
                             <Comment 
-                                author={comment.author} 
+                                _id={comment._id}
+                                author={comment.author}
+                                created_at={comment.created_at} 
                                 message={comment.message} 
                                 replies={comment.replies}
                                 votes={comment.votes}    

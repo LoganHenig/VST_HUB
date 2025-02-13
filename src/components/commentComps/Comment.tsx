@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Reply } from './reply';
 import { CommentType } from '../../vstTypes';
 import ReactTimeAgo from 'react-time-ago'
+import axios from 'axios';
 
 export const Comment = (props: CommentType) => {
     const [votes, setVotes] = useState(props.votes)
@@ -12,9 +13,18 @@ export const Comment = (props: CommentType) => {
     const [replies, setReplies] = useState([])
 
     useEffect(() => {
-        console.log(props)
-        console.log('props in comment')
-    },[])
+    },[replies])
+
+    const showMoreReplies = () => {
+        setCommentRepliesVisible(true)
+        axios.get(`http://localhost:8108/replies/${props._id}/`)
+            .then(res => {
+                setReplies([...replies, ...res.data]);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     const upVote = () => {
         setVotes(props.votes + 1);
@@ -31,9 +41,9 @@ export const Comment = (props: CommentType) => {
                 className="m-auto mx-4"
             />
             <div className="w-full flex flex-col">
-                <div className='text-secondary-content text-sm'>{props.author} 
+                <div className='text-secondary-content text-sm'>{props._id} 
                     <span className='text-xs ml-3'>
-                    {/* <ReactTimeAgo date={props.created_at}  locale="en-US"/>  */}
+                    <ReactTimeAgo date={props.created_at}  locale="en-US"/> 
                     </span>
                 </div>
                 <div className='text-primary-content'>{props.message}</div>
@@ -54,24 +64,24 @@ export const Comment = (props: CommentType) => {
         {props.replies &&
             <div className="relative">
                 {   
-                    props.replies.length > 1 && commentRepliesVisible &&
+                    props.replies.length > 0 && commentRepliesVisible &&
                     <div className='absolute top-2 left-6'>
                         <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-minus-circle' onClick={()=>{setCommentRepliesVisible(false)}}/>
                     </div>
 
                 }
                 {   
-                    props.replies.length > 1 && !commentRepliesVisible &&
+                    props.replies.length > 0 && !commentRepliesVisible &&
                     <>
                         <div className=' relative flex flex-row left-6 top-2'>
-                            <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-plus-circle' onClick={()=>{setCommentRepliesVisible(true)}}/>
+                            <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-plus-circle' onClick={()=>{showMoreReplies()}}/>
                             <div> Show More Comments </div>
                         </div>
                     </>
                 }
                 <div className='ml-12'>
                     { commentRepliesVisible &&
-                    props.replies.map((comment) =>{
+                    replies.map((comment: CommentType) =>{
                         return(
                             
                             <Comment 

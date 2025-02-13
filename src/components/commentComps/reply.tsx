@@ -30,6 +30,7 @@ export const Reply = (props: replyProp) => {
             .then(res => {
                 console.log(res.data)
                 props.setReplies([...props.replies, res.data])
+                setUserComment("")
             })
             .catch(err => {
                 console.log(err)

@@ -15,6 +15,7 @@ export const VstCommentSection = () => {
     useEffect(() =>{
         axios.get (`http://localhost:8108/comment/`, {
             params: {
+                is_reply: false,
                 product_id: productStore.id,
                 order_by: 'created_at'
             }
@@ -32,6 +33,8 @@ export const VstCommentSection = () => {
 
     useEffect(() => {
         setComments(productStore.comments)
+        console.log(productStore.comments)
+        console.log('^^^^')
     },[productStore.comments])
 
 

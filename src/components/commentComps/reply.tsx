@@ -10,6 +10,7 @@ type replyProp = {
     parent_id: string,
     replies: any,
     setReplies: any,
+    setRepliesVisible: any,
 }
 
 export const Reply = (props: replyProp) => {
@@ -30,6 +31,7 @@ export const Reply = (props: replyProp) => {
             .then(res => {
                 console.log(res.data)
                 props.setReplies([...props.replies, res.data])
+                props.setRepliesVisible(true)
                 setUserComment("")
             })
             .catch(err => {

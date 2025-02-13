@@ -4,24 +4,41 @@ import { useEffect, useState } from 'react';
 import { Reply } from './reply';
 import { CommentType } from '../../vstTypes';
 import ReactTimeAgo from 'react-time-ago'
+
 import axios from 'axios';
+import { SkeletonComment } from '../skeletonComment';
+import { skip } from 'node:test';
 
 export const Comment = (props: CommentType) => {
+
+    const LIMIT = 6
+    const [offset, setOffset] = useState(0);
+
     const [votes, setVotes] = useState(props.votes)
     const [replyInputVisible, setReplyInputVisible] = useState(false);
-    const [commentRepliesVisible, setCommentRepliesVisible] = useState(true);
+    const [commentRepliesVisible, setCommentRepliesVisible] = useState(false);
     const [replies, setReplies] = useState([])
-
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
+        console.log(replies)
     },[replies])
 
     const showMoreReplies = () => {
         setCommentRepliesVisible(true)
-        axios.get(`http://localhost:8108/replies/${props._id}/`)
+        setLoading(true)
+        axios.get(`http://localhost:8108/replies/${props._id}/`, {
+            params: {
+                limit: LIMIT,
+                skip: offset,
+            }
+        })
             .then(res => {
                 setReplies([...replies, ...res.data]);
+                setLoading(false)
+                setOffset(offset + LIMIT)
             })
             .catch(err => {
+                setLoading(false)
                 console.log(err)
             })
     }
@@ -58,33 +75,25 @@ export const Comment = (props: CommentType) => {
         { replyInputVisible &&
             <div className='relative pl-8 ml-8 mt-4'>
                 <div className="absolute -top-8 left-0 h-full w-6 border-l-1 border-b-1 rounded-bl-xl border-gray-400"/>
-                <Reply parent_id={props._id} replies={replies} setReplies={setReplies}/>
+                <Reply parent_id={props._id} replies={replies} setReplies={setReplies} setRepliesVisible={setCommentRepliesVisible}/>
             </div>
         }
-        {props.replies &&
-            <div className="relative">
-                {   
-                    props.replies.length > 0 && commentRepliesVisible &&
-                    <div className='absolute top-2 left-6'>
-                        <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-minus-circle' onClick={()=>{setCommentRepliesVisible(false)}}/>
-                    </div>
+        
+        {   commentRepliesVisible && replies.length > 0 &&
+        <div className='flex flex-col ml-16 mb-4'>
+            <div>
+                <Button label="Hide Replies" onClick={()=>{setCommentRepliesVisible(!commentRepliesVisible)}} className="p-button-raised p-button-rounded  text-xs py-0 px-2  " icon=" pi pi-angle-up"/>
+            </div>
+        </div>
+        }
 
-                }
-                {   
-                    props.replies.length > 0 && !commentRepliesVisible &&
-                    <>
-                        <div className=' relative flex flex-row left-6 top-2'>
-                            <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-plus-circle' onClick={()=>{showMoreReplies()}}/>
-                            <div> Show More Comments </div>
-                        </div>
-                    </>
-                }
                 <div className='ml-12'>
                     { commentRepliesVisible &&
                     replies.map((comment: CommentType) =>{
                         return(
                             
                             <Comment 
+                                key={comment._id}
                                 _id={comment._id}
                                 author={comment.author}
                                 created_at={comment.created_at} 
@@ -95,9 +104,27 @@ export const Comment = (props: CommentType) => {
                         )
                     })}
                 </div>
-            </div>
+                {loading &&
+                <>
+                    <SkeletonComment/>
+                    <SkeletonComment/>  
+                </>                  
+                }
+            
 
-        }
+        
+        <div className='flex flex-col ml-16 mb-4'>
+            {   !commentRepliesVisible && (props.replies.length > 0 || replies.length > 0) &&
+                <div>
+                    <Button label="View Replies" onClick={()=>{showMoreReplies()}} className="p-button-raised p-button-rounded  text-xs py-0 px-2  " icon=" pi pi-angle-down"/>
+                </div>
+            }      
+            {   props.replies.length > replies.length && commentRepliesVisible && 
+                <div>
+                    <Button label="View More Replies" onClick={()=>{showMoreReplies()}} className="p-button-raised p-button-rounded  text-xs py-0 px-2  " icon=" pi pi-angle-down"/>
+                </div>              
+            }
+        </div>
         </>
     )
 }

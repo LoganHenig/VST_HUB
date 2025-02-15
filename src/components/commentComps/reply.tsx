@@ -21,7 +21,6 @@ export const Reply = (props: replyProp) => {
     const [advancedEditor, setAdvancedEditor] = useState(false);
     const productStore = useAppSelector((store) => store.product);
 
-
     const postReply = () => {
         setPostingComment(true)
         axios.post(`http://localhost:8108/replies/${props.parent_id}/`, {

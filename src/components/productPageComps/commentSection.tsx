@@ -3,15 +3,44 @@ import { HeaderComment } from '../commentComps/headerComment'
 import { Comment } from '../commentComps/Comment'
 import { CommentType } from '../../vstTypes'
 import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../utils/hooks'
+import { useAppSelector } from '../../utils/hooks'
 import axios from 'axios';
-import { setCommentsInStore } from '../../utils/reduxSlices/productSlice'
 
 export const VstCommentSection = () => {
 
-    const [comments, setComments] = useState<CommentType[]>([])
+    const addCommentsFromAPI = (apiComments: CommentType[]) => {
+        setComments((prevComments) => {
+            const updatedComments = new Map(prevComments);
+        
+            apiComments.forEach((comment) => {
+              updatedComments.set(comment._id, comment);
+            });
+            return updatedComments;
+          });
+    }
+    const addReplyFromAPI = (apiComment: CommentType, parent_id: string) => {
+        setComments((prevComments) => {
+            const updatedComments = new Map(prevComments);
+            updatedComments.set(apiComment._id, apiComment);
+            if(updatedComments.has(parent_id)){
+                const parent = updatedComments.get(parent_id)
+                if(parent){
+                    console.log(parent)
+                    console.log('am I here')
+                    const updatedReplies = parent.replies ? [...parent.replies, apiComment._id] : [apiComment._id]
+                    updatedComments.set(parent_id, {
+                        ...parent, 
+                        replies: updatedReplies
+                    })
+                }
+            }
+            return updatedComments;
+          });
+    }
+
+    const [comments, setComments] = useState<Map<string, CommentType>>(new Map());
     const productStore = useAppSelector((store) => store.product);
-    const dispatch = useAppDispatch();
+
     useEffect(() =>{
         axios.get (`http://localhost:8108/comment/`, {
             params: {
@@ -21,49 +50,41 @@ export const VstCommentSection = () => {
             }
         })
         .then(res => {
-
-            dispatch(setCommentsInStore(res.data));
-            
-            setComments(res.data)
+            addCommentsFromAPI (res.data)
         })
         .catch(err => {
             console.log(err)
         })
     },[productStore.id])
 
-    useEffect(() => {
-        setComments(productStore.comments)
-        console.log(productStore.comments)
-        console.log('^^^^')
-    },[productStore.comments])
-
-
     return (
         <>
             <div className="comments-container flex flex-col w-full">
                 <div className='text-4xl'>103 Comments</div> 
-                <HeaderComment/>
+                <HeaderComment addCommentsFromAPI={addCommentsFromAPI}/>
                 <div className="w-full flex flex-col">
-                    {comments && comments.map((comment:CommentType)=>{
+                    {comments && Array.from(comments.values())
+                    .filter((comment: CommentType) => !comment.is_reply)
+                    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+                    .map((comment: CommentType)=>{
                         return(
                             <div className="mb-4">
                                 <Comment 
-                                    _id={comment._id}
-                                    message={comment.message} 
-                                    votes={0}
-                                    created_at={comment.created_at}
-                                    author='test user' 
-                                    replies={comment.replies}/>
+                                    comment_id={comment._id}
+                                    comments={comments}
+                                    addReplyFromAPI={addReplyFromAPI}
+                                    addCommentFromAPI={addCommentsFromAPI}
+                                />
                             </div>
                         )
                     })}
-                    { comments.length === 0 && 
+                    { comments.size === 0 && 
                         <div className='pl-16 text-lg'>No comments yet, be the first to post!</div>
                     }
                 </div>
             </div>
-            <div className='min-h-80'>
-
+            <div className='min-h-80 invisible'>
+                    creates space below comment sections
             </div>
         </>
         )

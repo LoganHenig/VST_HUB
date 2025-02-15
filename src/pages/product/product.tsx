@@ -1,15 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
-// import { Editor, EditorTextChangeEvent } from "primereact/editor";
-// import { Button } from "primereact/button";
-import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { ImageAndDiscription } from "../../components/productPageComps/imageAndDiscription";
 import { ProductTabSelect } from "../../components/productPageComps/productTabSelect";
-import { useAppDispatch, useAppSelector } from "../../utils/hooks";
+import { useAppDispatch } from "../../utils/hooks";
 import { setCommentsInStore, setId } from "../../utils/reduxSlices/productSlice";
 
 export const Product = () => {
-  const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
@@ -20,7 +16,6 @@ export const Product = () => {
       dispatch(setId(id))
     }
   },[id])
-  const [text, setText] = useState<string>("");
 
   return (
     <>
@@ -30,16 +25,6 @@ export const Product = () => {
             <ProductTabSelect/>
           </div>
       }
-
-
-
-        {/* <Editor
-          value={text}
-          onTextChange={(e: EditorTextChangeEvent) => setText(e.htmlValue)}
-          style={{ height: "320px" }}
-        />
-        {text} */}
-
     </>
   );
 };

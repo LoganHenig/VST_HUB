@@ -5,7 +5,6 @@ import App from "./App.tsx";
 import { ThemeProvider } from "./context/themeContext.tsx";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { AuthProvider } from "./context/authContext.tsx";
 
 if (typeof window !== "undefined") {

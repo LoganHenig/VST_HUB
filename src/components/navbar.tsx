@@ -24,7 +24,6 @@ export const Navbar = () => {
   window.addEventListener("login", async () => {
     const id = localStorage.getItem("user_id");
     if (id === null || id === undefined) {
-      console.log("here");
       return;
     }
 

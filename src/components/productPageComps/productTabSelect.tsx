@@ -9,7 +9,7 @@ export const ProductTabSelect = () => {
     return(
     <>
         <div className="w-full max-w-5xl min-h-96">
-            <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
+            <TabView className="bg-primary-background" activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
                 <TabPanel header="Comments">
                     <VstCommentSection/>
                 </TabPanel>

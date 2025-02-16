@@ -78,8 +78,8 @@ export const HeaderComment = (props: headerCommentProps) => {
                 </div>
             }
             <div>
-                <Button disabled={postingComment} label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} className="p-button-outlined p-button-rounded  text-s py-0 px-2 mx-2" />
-                <Button disabled={postingComment} label="Post" onClick={()=>{postComment()}} className="p-button-raised p-button-rounded  text-s py-0 px-3 " icon=" pi pi-send"/>
+                <Button disabled={postingComment} label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} outlined rounded className="text-s py-0 px-2 mx-2" />
+                <Button disabled={postingComment} label="Post" onClick={()=>{postComment()}} raised rounded className="text-s py-0 px-3" icon="pi pi-send"/>
             </div>
         </div>
     </>

@@ -25,8 +25,6 @@ export const VstCommentSection = () => {
             if(updatedComments.has(parent_id)){
                 const parent = updatedComments.get(parent_id)
                 if(parent){
-                    console.log(parent)
-                    console.log('am I here')
                     const updatedReplies = parent.replies ? [...parent.replies, apiComment._id] : [apiComment._id]
                     updatedComments.set(parent_id, {
                         ...parent, 

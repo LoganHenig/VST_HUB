@@ -34,7 +34,7 @@ export const TopThree = () => {
   ]);
 
   const topThreeCards = topThree.map((product) => (
-    <ProductCard product={product} key={product.id} />
+    <ProductCard product={product} id={product.id} />
   ));
 
   return (

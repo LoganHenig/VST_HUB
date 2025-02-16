@@ -79,8 +79,8 @@ export const Reply = (props: replyProp) => {
                 </div>
             }
             <div>
-                <Button disabled={postingComment} label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} className="p-button-outlined p-button-rounded  text-s py-0 px-2 mx-2" />
-                <Button disabled={postingComment} label="Post" onClick={()=>{postReply()}} className="p-button-raised p-button-rounded  text-s py-0 px-3 " icon=" pi pi-send"/>
+                <Button disabled={postingComment} outlined rounded label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} className="text-s py-0 px-2 mx-2"/>
+                <Button disabled={postingComment} raised rounded label="Post" onClick={()=>{postReply()}} className="text-s py-0 px-3" icon="pi pi-send"/>
             </div>
         </div>
     </div>

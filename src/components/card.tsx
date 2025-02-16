@@ -4,30 +4,43 @@ import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { useNavigate } from "react-router";
 
-export const ProductCard = ({ product }) => {
+type Product = {
+  title: string,
+  id: string,
+  category: string,
+  author: string,
+  rating: number,
+  description: string
+}
+
+type ProductProps = {
+  product: Product,
+  id: string
+}
+export const ProductCard = ( props: ProductProps) => {
   const navigate = useNavigate();
 
-  const header = <img alt={product.title} src="\src\assets\headphones.webp" />;
+  const header = <img alt={props.product.title} src="\src\assets\headphones.webp" />;
   const footer = (
     <Button
       label="View Product"
       icon="pi pi-check"
       className="w-full"
       onClick={() => {
-        navigate(`/product/${product.id}`);
+        navigate(`/product/${props.id}`);
       }}
     />
   );
 
   return (
     <Card
-      title={product.title}
-      subTitle={`${product.category} by ${product.author}`}
+      title={props.product.title}
+      subTitle={`${props.product.category} by ${props.product.author}`}
       footer={footer}
       header={header}
     >
-      <Rating value={product.rating} readOnly cancel={false} className="mb-5" />
-      <p className="m-0">{product.description}</p>
+      <Rating value={props.product.rating} readOnly cancel={false} className="mb-5" />
+      <p className="m-0">{props.product.description}</p>
     </Card>
   );
 };

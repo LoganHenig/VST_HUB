@@ -90,10 +90,10 @@ export const Comment = (props: commentProps) => {
             </div>
         </div>
         <div className='flex flex-row ml-16 items-center'>
-            <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-angle-up' onClick={()=>{upVote()}}/>
+            <Button size='small' rounded text className='h-6 w-6 p-0' icon='pi pi-angle-up' onClick={()=>{upVote()}}/>
             <div className='mx-1 text-highlight-background'>{votes}</div>
-            <Button size='small' className='p-button-rounded p-button-text h-6 w-6 p-0' icon='pi pi-angle-down' onClick={()=>{downVote()}} />
-            <Button label='Reply' size='small' className='p-button-rounded p-button-text mx-6 h-5 p-2' icon='pi pi-comment' onClick={()=>{setReplyInputVisible(!replyInputVisible)}}/>
+            <Button size='small' rounded text className='h-6 w-6 p-0' icon='pi pi-angle-down' onClick={()=>{downVote()}} />
+            <Button label='Reply' rounded text size='small' className='mx-6 h-5 p-2' icon='pi pi-comment' onClick={()=>{setReplyInputVisible(!replyInputVisible)}}/>
         </div>
         { replyInputVisible &&
             <div className='relative pl-8 ml-8 mt-4'>
@@ -105,7 +105,7 @@ export const Comment = (props: commentProps) => {
         {   commentRepliesVisible && (comment?.replies?.length?? 0) > 0 &&
         <div className='flex flex-col ml-16 mb-4'>
             <div>
-                <Button label="Hide Replies" onClick={()=>{setCommentRepliesVisible(!commentRepliesVisible)}} className="p-button-raised p-button-rounded  text-xs py-0 px-2  " icon=" pi pi-angle-up"/>
+                <Button label="Hide Replies" rounded raised onClick={()=>{setCommentRepliesVisible(!commentRepliesVisible)}} className="text-xs py-0 px-2  " icon=" pi pi-angle-up"/>
             </div>
         </div>
         }
@@ -135,12 +135,12 @@ export const Comment = (props: commentProps) => {
         <div className='flex flex-col ml-16 mb-4'>
             {   !commentRepliesVisible && ((comment?.replies?.length?? 0) > 0) &&  //if no replies are visible
                 <div>
-                    <Button label="View Replies" onClick={()=>{showMoreReplies()}} className="p-button-raised p-button-rounded  text-xs py-0 px-2  " icon=" pi pi-angle-down"/>
+                    <Button label="View Replies" raised rounded onClick={()=>{showMoreReplies()}} className="text-xs py-0 px-2" icon=" pi pi-angle-down"/>
                 </div>
             }      
             {   !areAllRepliesVisible() && commentRepliesVisible && // if replies are visible but more can be pulled from db
                 <div>
-                    <Button label="View More Replies" onClick={()=>{showMoreReplies()}} className="p-button-raised p-button-rounded  text-xs py-0 px-2  " icon=" pi pi-angle-down"/>
+                    <Button label="View More Replies" raised rounded onClick={()=>{showMoreReplies()}} className="text-xs py-0 px-2" icon=" pi pi-angle-down"/>
                 </div>              
             }
         </div>

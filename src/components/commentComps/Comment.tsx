@@ -5,6 +5,7 @@ import { Reply } from './reply';
 import { CommentType } from '../../vstTypes';
 import { SkeletonComment } from '../skeletonComment';
 import ReactTimeAgo from 'react-time-ago'
+import DOMPurify from 'dompurify';
 import axios from 'axios';
 
 type commentProps = {
@@ -86,7 +87,7 @@ export const Comment = (props: commentProps) => {
                         }
                     </span>
                 </div>
-                <div className='text-primary-content'>{comment?.message}</div>
+                <div className='text-primary-content' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(comment?.message?? "")}}/>
             </div>
         </div>
         <div className='flex flex-row ml-16 items-center'>

@@ -16,12 +16,14 @@ type replyProp = {
 
 export const Reply = (props: replyProp) => {
 
+    const [editorKey, setEditorKey] = useState(0)
     const [postingComment, setPostingComment] = useState(false)
     const [userComment, setUserComment] = useState("");
     const [advancedEditor, setAdvancedEditor] = useState(false);
     const productStore = useAppSelector((store) => store.product);
 
     const postReply = () => {
+        if (userComment.trim() === "") return;
         setPostingComment(true)
         axios.post(`http://localhost:8108/replies/${props.parent_id}/`, {
             message: userComment,
@@ -33,6 +35,7 @@ export const Reply = (props: replyProp) => {
                 props.addReplyFromAPI(res.data, props.parent_id)
                 props.setRepliesVisible(true)
                 setUserComment("")
+                setEditorKey(editorKey + 1) //this forces the editor to refresh
                 setPostingComment(false)
             })
             .catch(err => {
@@ -61,8 +64,7 @@ export const Reply = (props: replyProp) => {
                 }
                 {advancedEditor &&
                     <>
-                            <Editor style={{minHeight:'120px'}} onTextChange={(e: EditorTextChangeEvent) => setUserComment(e.htmlValue?? "")}/>
-
+                            <Editor key={editorKey} style={{minHeight:'120px'}} onTextChange={(e: EditorTextChangeEvent) => setUserComment(e.htmlValue?? "")}/>
                     </>
                 }
             </span>
@@ -79,7 +81,7 @@ export const Reply = (props: replyProp) => {
                 </div>
             }
             <div>
-                <Button disabled={postingComment} outlined rounded label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} className="text-s py-0 px-2 mx-2"/>
+                    <Button disabled={postingComment} outlined rounded label={`${advancedEditor ? 'Basic' : 'Advanced'}`} onClick={()=>{setAdvancedEditor(!advancedEditor)}} className="text-s py-0 px-2 mx-2"/>
                 <Button disabled={postingComment} raised rounded label="Post" onClick={()=>{postReply()}} className="text-s py-0 px-3" icon="pi pi-send"/>
             </div>
         </div>
